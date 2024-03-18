@@ -7,13 +7,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='icon' href='/images/parabolic-triangle.png' type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
     <nav>
     <img width="70px" src="/images/parabolic-triangle.png" alt="">  
   <% if (user) { %>
     <a href="/users">Dashboard</a>
-    <a href="/logout">Browse</a>
+    <a href="/show">Browse</a>
     <a href="/logout">Wishlist</a>
     <a href="/logout">Log Out</a>
   <% } else { %>

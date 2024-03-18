@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
+var gamesCtrl = require("../controllers/games");
 
 const ROOT_URL = "https://api.rawg.io/api/games";
 /* GET home page. */
@@ -15,6 +16,10 @@ router.get("/", function(req, res) {
       res.render("index", { title: "", gameData });
     });
 });
+
+router.get("/show", gamesCtrl.showAll);
+
+// Passport.JS SetUp Below
 
 router.get(
   "/auth/google",

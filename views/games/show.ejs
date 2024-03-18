@@ -1,0 +1,79 @@
+<%- include('../partials/header') %>
+
+<div class="games-search-form">
+    <form action="">
+        <input type="text" placeholder="Search 850,000+ games...">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+<main class="show-games">
+    <aside class="search-parameters index-fixed">
+        <h3>All Games</h3>
+        <h3>New Releases</h3>
+        <h3>Top Rated</h3>
+        <p>This Month</p>
+        <p>This Year</p>
+        <p>All Time</p>
+        <h3>Genre</h3>
+        <p>Action</p>
+        <p>Strategy</p>
+        <p>RPG</p>
+        <p>Shooter</p>
+        <p>Adventure</p>
+        <p>Puzzle</p>
+        <p>Racing</p>
+        <p>Sports</p>
+        <h3>Platforms</h3>
+        <p>PC</p>
+        <p>PlayStation</p>
+        <p>XBOX</p>
+        <p>Nintendo</p>
+        <p>Mac</p>
+    </aside>
+    <section class="main-games-section index-scroll">
+      <% games.results.forEach(function(game) { %>
+      <div id="<%= game.id %>" class="game-container">
+      <!-- game image -->
+      <div class="image">
+        <img src="<%= game.background_image %>" alt="Game Thumbnail">
+      </div>
+      <!-- platforms and rating -->
+      <div class="platform-rating">
+        <!-- Not sure might need to loop over array of platforms and select images -->
+        <div class="platforms-icons">
+          <% game.parent_platforms.forEach(function(p) { %>
+            <% var platform = p.platform.id %>
+            <i class="<%= platform === 1 ? 'fa-brands fa-windows' : platform === 2 ? 'fa-brands fa-playstation' : platform === 3 ? 'fa-brands fa-xbox' : platform === 5 ? 'fa-brands fa-apple' : platform === 7 ? 'fab fa-nintendo-switch' : '' %>"></i>
+          <% }) %>
+        </div>
+        <p class="rating"><%= game.metacritic %></p>
+      </div>
+      <!-- Game Title -->
+      <div class="game-title">
+        <p><%= game.name %></p>
+      </div>
+      <!-- wishlist and review and details buttons-->
+      <div class="wish-review-details">
+        
+        <div class="wish-btn">
+          <form action="/wishlist/add/<%- game.id %>" method="POST">
+            <input type="text" name="name" hidden  value="<%= game.name %>">
+            <input type="text" name="id" hidden value="<%= game.id %>">
+            <input type="text" name="metacritic" hidden value="<%= game.metacritic %>">
+            <input type="text" name="platforms" hidden value="<%= game.parent_platforms %>">
+            <input type="text" name="screenShots" hidden value="<%= game.short_screenshots%>">
+            <input type="text" name="genres" hidden value="<%= game.genres %>">
+            <button><i class="fa-regular fa-heart"></i></button>
+          </form>
+        </div>
+        <div class="review-btn">
+          <a href=""><i class="fa-regular fa-comment"></i></a>
+        </div>
+        <div class="details-btn">
+          <a href=""><i class="fa-solid fa-ellipsis"></i></a>
+        </div>
+      </div>
+    </div>
+    <% })%>
+    </section>
+</main>

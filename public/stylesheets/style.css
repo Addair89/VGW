@@ -22,7 +22,6 @@ body {
 nav {
   height: 7vmin;
   background: linear-gradient(269deg, #3f7d20, transparent 25%);
-  position: fixed;
   width: 100%;
   display: flex;
   align-items: center;
@@ -116,8 +115,10 @@ p {
 }
 
 .rating {
-  padding: 0vmin;
+  padding: 0.5vmin;
   margin-right: 2vmin;
+  border: 1px solid green;
+  border-radius: 5px;
 }
 
 .platform-rating {
@@ -126,10 +127,12 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 1vmin 0 1vmin 0;
 }
 
 .platforms-icons {
   margin-left: 2vmin;
+  font-size: 2.5vmin;
 }
 
 .platform {
@@ -149,6 +152,7 @@ p {
 
 .image > img {
   max-height: 235px;
+  min-height: 190px;
   width: 100%;
   border-radius: 15px;
 }
@@ -187,6 +191,30 @@ p {
   color: #f3eff5;
 }
 
+button {
+  background: none;
+  border: none;
+}
+
+.wish-review-details {
+  width: 100%;
+  display: flex;
+  gap: 5vmin;
+  padding: 1vmin;
+  margin-left: 2vmin;
+}
+
+.details-btn {
+  margin-left: auto;
+  margin-right: 2.5vmin;
+}
+
+.wish-review-details > div > form > button,
+a {
+  color: #fafafa;
+  font-size: 2.5vmin;
+}
+
 .wishlist-data,
 .reviews-data {
   display: flex;
@@ -210,4 +238,69 @@ p {
 .dashboard-anchor {
   color: #3f7d20;
   font-size: 3vmin;
+}
+
+.games-search-form {
+  margin: 0 auto 2vmin auto;
+  text-align: center;
+  width: 25%;
+  height: 50px;
+}
+
+.games-search-form > form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.games-search-form > form > input {
+  height: 100%;
+  width: 100%;
+  background: #45495578;
+  backdrop-filter: blur(4px);
+  border: 1px solid white;
+  padding: 2vmin;
+  font-size: 20px;
+  border-radius: 10px;
+  color: #fafafa;
+}
+
+.games-search-form > form > button {
+  color: #fafafa;
+  font-size: 20px;
+  padding: 1vmin;
+}
+
+input:focus {
+  outline: none;
+}
+
+.show-games {
+  display: flex;
+}
+
+.search-parameters {
+  width: 17%;
+}
+
+.main-games-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1vmin;
+  width: 80%;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  padding: 1vmin;
+}
+
+.main-games-section > .game-container {
+  height: 440px;
+}
+
+aside > p {
+  padding: 0px;
+}
+
+button:hover {
+  cursor: pointer;
 }

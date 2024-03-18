@@ -24,7 +24,7 @@
         <div class="platforms-icons">
           <% game.parent_platforms.forEach(function(p) { %>
             <% var platform = p.platform.id %>
-            <img height="25px" src="<%= platform === 1 ? pcIcon : platform === 2 ? psIcon : platform === 3 ? xbIcon : platform === 5 ? apIcon : platform === 7 ? nsIcon : '' %>" alt="" class="platform">
+            <i class="<%= platform === 1 ? 'fa-brands fa-windows' : platform === 2 ? 'fa-brands fa-playstation' : platform === 3 ? 'fa-brands fa-xbox' : platform === 5 ? 'fa-brands fa-apple' : platform === 7 ? 'fab fa-nintendo-switch' : '' %>"></i>
           <% }) %>
         </div>
         <p class="rating"><%= game.metacritic %></p>
@@ -36,13 +36,13 @@
       <!-- wishlist and review and details buttons-->
       <div class="wish-review-details">
         <div class="wish-btn">
-          <button>+</button>
+          <button><i class="fa-regular fa-heart"></i></button>
         </div>
         <div class="review-btn">
-          <button>+</button>
+          <button><i class="fa-regular fa-comment"></i></button>
         </div>
         <div class="details-btn">
-          <button>---</button>
+          <button><i class="fa-solid fa-ellipsis"></i></button>
         </div>
       </div>
     </div>
