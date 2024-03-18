@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+  
+  
+  <% var nameArr = user.name.split(' ') %>
+  <% var firstName = nameArr[0] %>
+  <h1 class="user-db-title">Welcome <%= firstName %></h1>
+  <div class="dashboard-container">
+    <div class="wishlist-data">
+      <p class="count">
+        <%= user.wishListCount %>
+      </p>
+      <p class="dashboard-text">Games Wish Listed</p>
+      <p class="dashboard-text">Add A <a class="dashboard-text" href="/show">Game</a></p>
+      <% if(user.wishListCount > 0) { %>
+      <a class="dashboard-anchor" href="">See Wish List</a>
+      <% } %>
+    </div>
+    <div class="reviews-data">
+      <p class="count">
+        <%= user.reviewCount %>
+      </p>
+      <p class="dashboard-text">Reviews Submitted</p>
+      <% if(user.reviewCount > 0) { %>
+      <a class="dashboard-text" href="">See Your Reviews</a>
+      <% } else { %>
+        <p class="dashboard-text">Review A <a href="/show">Game</a></p>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>

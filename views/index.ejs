@@ -1,0 +1,54 @@
+<%- include('./partials/header') %>
+<% var pcIcon = '/images/pcIcon.webp' %>
+<% var psIcon = '/images/psIcon.webp' %>
+<% var nsIcon = '/images/nsIcon.webp' %>
+<% var xbIcon = '/images/xbIcon.webp' %>
+<% var apIcon = '/images/apIcon.png' %>
+<main class="index-main">
+<section class="index-message index-fixed">
+  <h1>Welcome</h1>
+  <p>Use this app to browse, review and wishlist games.</p>
+  <p>Sign up <a href="/auth/google" class="login">here</a>.</p>
+</section>
+<section class="index-games index-scroll">
+  <h2>Top Rated Games of 2023</h2>
+  <% gameData.results.forEach(function(game) { %>
+    <div class="game-container">
+      <!-- game image -->
+      <div class="image">
+        <img src="<%= game.background_image %>" alt="Game Thumbnail">
+      </div>
+      <!-- platforms and rating -->
+      <div class="platform-rating">
+        <!-- Not sure might need to loop over array of platforms and select images -->
+        <div class="platforms-icons">
+          <% game.parent_platforms.forEach(function(p) { %>
+            <% var platform = p.platform.id %>
+            <img height="25px" src="<%= platform === 1 ? pcIcon : platform === 2 ? psIcon : platform === 3 ? xbIcon : platform === 5 ? apIcon : platform === 7 ? nsIcon : '' %>" alt="" class="platform">
+          <% }) %>
+        </div>
+        <p class="rating"><%= game.metacritic %></p>
+      </div>
+      <!-- Game Title -->
+      <div class="game-title">
+        <p><%= game.name %></p>
+      </div>
+      <!-- wishlist and review and details buttons-->
+      <div class="wish-review-details">
+        <div class="wish-btn">
+          <button>+</button>
+        </div>
+        <div class="review-btn">
+          <button>+</button>
+        </div>
+        <div class="details-btn">
+          <button>---</button>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</section>
+ 
+</main>
+</body>
+</html>

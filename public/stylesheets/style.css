@@ -1,0 +1,213 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: "Aldrich", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #0d0a0b;
+  color: #f3eff5;
+
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 1500'%3E%3Cdefs%3E%3Cpath fill='none' stroke-width='76.9' stroke-opacity='0.05' id='a' d='M0-478l-413.96 717h827.92L0-478l-413.96 717h827.92z'/%3E%3C/defs%3E%3Cg style='transform-origin:center'%3E%3Cg transform='rotate(22.8 0 0)' style='transform-origin:center'%3E%3Cg transform='rotate(-44.8 0 0)' style='transform-origin:center'%3E%3Cg transform='translate(1000 750)'%3E%3Cuse stroke='%2372B01D' href='%23a' transform='rotate(-22.4 0 0) scale(0.776)'/%3E%3Cuse stroke='%236fae1d' href='%23a' transform='rotate(-19.6 0 0) scale(0.804)'/%3E%3Cuse stroke='%236dac1d' href='%23a' transform='rotate(-16.8 0 0) scale(0.832)'/%3E%3Cuse stroke='%236aa91e' href='%23a' transform='rotate(-14 0 0) scale(0.86)'/%3E%3Cuse stroke='%2368a71e' href='%23a' transform='rotate(-11.2 0 0) scale(0.888)'/%3E%3Cuse stroke='%2365a51e' href='%23a' transform='rotate(-8.4 0 0) scale(0.916)'/%3E%3Cuse stroke='%2363a31e' href='%23a' transform='rotate(-5.6 0 0) scale(0.944)'/%3E%3Cuse stroke='%2360a11e' href='%23a' transform='rotate(-2.8 0 0) scale(0.972)'/%3E%3Cuse stroke='%235e9e1f' href='%23a' transform=''/%3E%3Cuse stroke='%235c9c1f' href='%23a' transform='rotate(2.8 0 0) scale(1.028)'/%3E%3Cuse stroke='%235a9a1f' href='%23a' transform='rotate(5.6 0 0) scale(1.056)'/%3E%3Cuse stroke='%2357981f' href='%23a' transform='rotate(8.4 0 0) scale(1.084)'/%3E%3Cuse stroke='%2355961f' href='%23a' transform='rotate(11.2 0 0) scale(1.112)'/%3E%3Cuse stroke='%2353941f' href='%23a' transform='rotate(14 0 0) scale(1.14)'/%3E%3Cuse stroke='%2351921f' href='%23a' transform='rotate(16.8 0 0) scale(1.168)'/%3E%3Cuse stroke='%234f8f20' href='%23a' transform='rotate(19.6 0 0) scale(1.196)'/%3E%3Cuse stroke='%234d8d20' href='%23a' transform='rotate(22.4 0 0) scale(1.224)'/%3E%3Cuse stroke='%234b8b20' href='%23a' transform='rotate(25.2 0 0) scale(1.252)'/%3E%3Cuse stroke='%23498920' href='%23a' transform='rotate(28 0 0) scale(1.28)'/%3E%3Cuse stroke='%23488720' href='%23a' transform='rotate(30.8 0 0) scale(1.308)'/%3E%3Cuse stroke='%23468520' href='%23a' transform='rotate(33.6 0 0) scale(1.336)'/%3E%3Cuse stroke='%23448320' href='%23a' transform='rotate(36.4 0 0) scale(1.364)'/%3E%3Cuse stroke='%23428120' href='%23a' transform='rotate(39.2 0 0) scale(1.392)'/%3E%3Cuse stroke='%23417f20' href='%23a' transform='rotate(42 0 0) scale(1.42)'/%3E%3Cuse stroke='%233F7D20' href='%23a' transform='rotate(44.8 0 0) scale(1.448)'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+nav {
+  height: 7vmin;
+  background: linear-gradient(269deg, #3f7d20, transparent 25%);
+  position: fixed;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.index-main {
+  padding-top: 7vmin;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Updated to create two columns */
+  align-items: start;
+  justify-items: center;
+}
+
+.page-title {
+  padding: 10vmin;
+  font-size: 54px;
+  color: #f3eff5;
+}
+
+nav > a {
+  color: #f8f8f8;
+  margin-right: 25px;
+}
+
+nav > img {
+  margin-right: auto;
+  margin-left: 2vmin;
+  filter: blur(1.5);
+}
+
+p > a {
+  color: #3f7d20;
+  text-transform: uppercase;
+}
+
+.login img {
+  height: 30px;
+}
+
+.index-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.index-message > h1 {
+  font-size: 15vmin;
+}
+
+.index-message > p {
+  font-size: 6vmin;
+}
+
+.index-message > h1,
+p {
+  padding: 10vmin 10vmin 0vmin 10vmin;
+  color: #f3eff5;
+}
+
+.index-games {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px 1fr 1fr;
+  margin-top: 10vmin;
+  padding-right: 1vmin;
+  gap: 2vmin;
+}
+
+.index-games > h2 {
+  grid-column-start: 1;
+  justify-self: center;
+  grid-column-end: 3;
+  font-size: 4vmin;
+  padding: 2vmin;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2vmin;
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.62);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.9px);
+  -webkit-backdrop-filter: blur(5.9px);
+  border: 2px solid #3f7d20;
+}
+
+.rating {
+  padding: 0vmin;
+  margin-right: 2vmin;
+}
+
+.platform-rating {
+  width: 100%;
+  height: 3vmin;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.platforms-icons {
+  margin-left: 2vmin;
+}
+
+.platform {
+  background-color: #407d20;
+}
+
+.game-title {
+  align-self: flex-start;
+  padding-left: 1vmin;
+}
+
+.game-title > p {
+  padding: 0vmin;
+  font-size: 4vmin;
+  align-self: flex-start;
+}
+
+.image > img {
+  max-height: 235px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.index-scroll {
+  overflow-y: auto; /* Enable vertical scrolling for the scrollable section */
+  height: calc(
+    80vh - 2vmin
+  ); /* Adjust the height of the scrollable section to fit the viewport */
+  /* You might need to adjust this height based on your header height, footer height, or any other elements on the page */
+}
+
+.dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5vmin;
+}
+
+.wishlist-data > p {
+  padding: 0;
+}
+
+.reviews-data > p {
+  padding: 0;
+}
+
+.count {
+  font-size: 10vmin;
+}
+
+.user-db-title {
+  text-align: center;
+  padding: 15vmin;
+  font-size: 54px;
+  color: #f3eff5;
+}
+
+.wishlist-data,
+.reviews-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50vmin;
+  width: 35vmin;
+  background: #3f7d2040;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.9px);
+  -webkit-backdrop-filter: blur(5.9px);
+  border: 2px solid #3f7d20;
+}
+
+.dashboard-text {
+  font-size: 3vmin;
+}
+
+.dashboard-anchor {
+  color: #3f7d20;
+  font-size: 3vmin;
+}
