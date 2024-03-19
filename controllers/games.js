@@ -12,7 +12,6 @@ const showAll = async (req, res) => {
   let wishListIds = wishListGames.map((el) => {
     return el.id;
   });
-  console.log(wishListIds);
 
   res.render("games/show", {
     games,

@@ -54,16 +54,15 @@
       </div>
       <!-- wishlist and review and details buttons-->
       <div class="wish-review-details">
-        
         <div class="wish-btn">
-          <form action="/wishlist/add/<%- game.id %>" method="POST">
+          <form action="/wishlist/<%- wishListIds.includes(game.id) ? 'delete' : 'add' %>/<%- game.id %><%- wishListIds.includes(game.id) ? '?_method=DELETE' : '' %>" method="POST">
             <input type="text" name="name" hidden  value="<%= game.name %>">
             <input type="text" name="id" hidden value="<%= game.id %>">
             <input type="text" name="metacritic" hidden value="<%= game.metacritic %>">
-            <input type="text" name="platforms" hidden value="<%= game.parent_platforms %>">
-            <input type="text" name="screenShots" hidden value="<%= game.short_screenshots%>">
-            <input type="text" name="genres" hidden value="<%= game.genres %>">
-            <button><i class="fa-regular fa-heart"></i></button>
+            <input type="text" name="platforms" hidden value="<%= JSON.stringify(game.parent_platforms) %>">
+            <input type="text" name="screenShots" hidden value="<%= JSON.stringify(game.short_screenshots)%>">
+            <input type="text" name="genres" hidden value="<%= JSON.stringify(game.genres) %>">
+            <button><i class="fa-<%- wishListIds.includes(game.id) ? 'solid' : 'regular' %> fa-heart"></i></button>
           </form>
         </div>
         <div class="review-btn">

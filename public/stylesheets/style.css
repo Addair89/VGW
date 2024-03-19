@@ -76,8 +76,8 @@ p > a {
   font-size: 6vmin;
 }
 
-.index-message > h1,
-p {
+.index-message p,
+h1 {
   padding: 10vmin 10vmin 0vmin 10vmin;
   color: #f3eff5;
 }
@@ -97,6 +97,16 @@ p {
   grid-column-end: 3;
   font-size: 4vmin;
   padding: 2vmin;
+}
+
+.wish-btn > button,
+.review-btn > button {
+  color: #fafafa;
+  font-size: 2.5vmin;
+}
+
+.details-btn > button {
+  font-size: 2.5vmin;
 }
 
 .game-container {
@@ -209,10 +219,18 @@ button {
   margin-right: 2.5vmin;
 }
 
-.wish-review-details > div > form > button,
-a {
+.fa-comment,
+.fa-heart {
   color: #fafafa;
   font-size: 2.5vmin;
+}
+
+.fa-ellipsis {
+  font-size: 2.5vmin;
+}
+
+.wishlist-details a {
+  color: #72b01d;
 }
 
 .wishlist-data,
@@ -223,7 +241,7 @@ a {
   justify-content: space-evenly;
   height: 50vmin;
   width: 35vmin;
-  background: #3f7d2040;
+  background: #45495578;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5.9px);
@@ -285,7 +303,7 @@ input:focus {
 
 .main-games-section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1vmin;
   width: 80%;
   border-top: 1px solid white;
@@ -303,4 +321,108 @@ aside > p {
 
 button:hover {
   cursor: pointer;
+}
+
+.fa-solid {
+  color: #72b01d;
+}
+
+.wish-list-card {
+  display: grid;
+  grid-template-columns: 40% auto;
+  gap: 2vmin;
+  align-items: flex-start;
+  padding: 2vmin;
+  margin: 2vmin;
+  border: 2px solid #72b01d;
+  border-radius: 10px;
+  background: #45495578;
+  backdrop-filter: blur(4px);
+}
+
+.wishlist-title p {
+  font-size: 5vmin;
+}
+
+.wish-list-genres,
+.wish-list-platforms,
+.wish-list-rating {
+  display: flex;
+  gap: 2vmin;
+  align-items: center;
+}
+
+.wish-list-genres p,
+.wish-list-platforms p,
+.wish-list-rating p {
+  margin: 1vmin 0;
+  padding: 0.5vmin;
+  border: 3px solid #72b01d;
+  background: #454955;
+  border-radius: 10px;
+}
+
+.wish-list-genres h2,
+.wish-list-platforms h2,
+.wish-list-rating h2 {
+  margin: 1vmin 0;
+  padding: 1vmin;
+  font-size: 2vmin;
+}
+
+.platform-genres-rating {
+  display: flex;
+  align-items: center;
+  gap: 2vmin;
+  justify-content: space-between;
+}
+
+.wish-list-container {
+  width: 80vw;
+  margin: auto;
+  padding: 2vmin 0vmin;
+}
+
+.remove-from-wish-list {
+  display: flex;
+  gap: 2vmin;
+}
+
+.review-form input[type="radio"] {
+  display: none;
+}
+
+.review-form label {
+  display: inline-block;
+  background-color: #3f7d20;
+  padding: 4px 11px;
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.review-form input[type="radio"]:checked + label {
+  background-color: #72b01d;
+}
+
+/* Custom styles for carousel navigation buttons */
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the opacity and color as needed */
+  border-radius: 50%; /* Optional: Make the buttons round */
+  width: 40px; /* Optional: Adjust the width */
+  height: 40px; /* Optional: Adjust the height */
+  top: 45%;
+}
+
+/* Hover styles for the navigation buttons (optional) */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  color: #fff; /* Change color on hover */
+  background-color: rgba(0, 0, 0, 0.8); /* Darken background on hover */
 }

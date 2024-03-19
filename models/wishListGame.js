@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const wishListGameSchema = new Schema({
   name: { type: String },
-  id: { type: String },
+  id: { type: Number },
   details: { type: String },
+  website: { type: String },
   platforms: { type: Array }, //this needs to be an array
   screenShots: { type: Array }, //this needs to be an array
   genres: { type: Array }, //this needs to be an array

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VGW</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='icon' href='/images/parabolic-triangle.png' type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" integrity="sha512-gMjQeDaELJ0ryCI+FtItusU9MkAifCZcGq789FrzkiM49D8lbDhoaUaIX4ASU187wofMNlgBJ4ckbrXM9sE6Pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <nav>
+    <img width="70px" src="/images/parabolic-triangle.png" alt="">  
+  <% if (user) { %>
+    <a href="/users">Dashboard</a>
+    <a href="/games/show">Browse</a>
+    <a href="/wishlist/show">Wishlist</a>
+    <a href="/logout">Log Out</a>
+  <% } else { %>
+    <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+    <a href="/" class="login">Browse Games</a>
+  <% } %>
+</nav>
+<h1><%= user.name %>'s Wish List</h1>
+<main class="wish-list-container">
+    <% wishlist.forEach(function(game) {%>
+    <div class="wish-list-card">
+        <div class="image-rating">
+            <div id="carousel<%= game.id %>" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                <% game.screenShots.forEach(function(image, index) { %>
+                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                        <img src="<%= image.image %>" class="d-block w-100" alt="Screenshot">
+                    </div>
+                <% }) %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel<%= game.id %>" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel<%= game.id %>" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            
+        </div>
+        <div class="title-details-reviews">
+            <div class="wishlist-title-details">
+                <div class="platform-genres-rating">
+                    <div class="platforms-icons">
+                        <% game.platforms.forEach(function(p) { %>
+                            <% var platform = p.platform.id %>
+                            <i class="<%= platform === 1 ? 'fa-brands fa-windows' : platform === 2 ? 'fa-brands fa-playstation' : platform === 3 ? 'fa-brands fa-xbox' : platform === 5 ? 'fa-brands fa-apple' : platform === 7 ? 'fab fa-nintendo-switch' : '' %>"></i>
+                        <% }) %>
+                    </div>
+                    <div class="wish-list-genres">
+                        <% game.genres.forEach(function(g) {%>
+                            <p><%= g.name %></p>
+                        <% })%>    
+                    </div>
+                    <div class="wish-list-rating">
+                        <h2>Rating: </h2>
+                        <p><%= game.metacritic %></p>
+                    </div>
+                </div>
+                <p><%= game.name %></p>
+            </div>
+            <div class="wishlist-details">
+                <%= game.details.length %>
+                <%- `${game.details.slice(0, 500)}`%>
+                <%if(game.details.length > 500) {%>
+                    <a class="" href="<%= game.website %>">... See rest of description on <%=game.name%>'s website.</a>
+                    <%}%>
+            </div>
+            <div class="review-container">
+                <p>Review Game: </p>
+                <form class="review-form" action="/review/new/<%= game.id%>" method="POST">
+                    <input id="meh" type="radio" name="rating" value="Meh">
+                    <label for="meh">Meh</label>
+                    
+                    <input id="good" type="radio" name="rating" value="Good">
+                    <label for="good">Good</label>
+                    
+                    <input id="great" type="radio" name="rating" value="Great">
+                    <label for="great">Great</label>
+                    
+                    <input id="amazing" type="radio" name="rating" value="Amazing">
+                    <label for="amazing">Amazing</label>
+                    <button>Submit Review</button>
+                </form>
+            </div>
+            <div class="remove-from-wish-list">
+                <p>Remove From Wish List: </p>
+                <form action="/wishlist/delete/<%= game.id%>?_method=DELETE" method="POST">
+                    <button><i class="fa-solid fa-heart"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</main>
+</body>
+</html>
