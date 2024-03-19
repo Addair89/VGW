@@ -5,7 +5,7 @@ const reviewSchema = new Schema(
   {
     gameId: { type: String },
     user: { type: Schema.Types.ObjectId, ref: "User" },
-    rating: { type: String, enum: ["Meh", "Good", "Great", "Amazing"] },
+    rating: { type: String },
   },
   {
     timestamps: true,
