@@ -397,13 +397,60 @@ button:hover {
   padding: 2vmin 0vmin;
 }
 
+.wishlist-title {
+  font-size: 4vmin;
+}
 .remove-from-wish-list {
   display: flex;
   gap: 2vmin;
 }
 
+.remove-from-wish-list > button .fa-heart:hover {
+  color: red;
+}
+
+.remove-from-wish-list:hover .fa-heart,
+.remove-from-wish-list:hover {
+  color: red;
+}
+
 .review-form input[type="radio"] {
   display: none;
+}
+
+.search-parameters {
+  border: 1px solid gray;
+  padding: 1vmin;
+}
+
+.search-heading,
+.search-heading-term {
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  padding: 1vmin;
+}
+
+.search-heading {
+  font-size: 3.5vmin;
+}
+
+.search-term {
+  font-size: 3vmin;
+}
+
+.search-parameters form {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: flex-start;
+}
+.search-parameters .heading-search-term {
+  align-items: unset;
+}
+
+.search-parameters > form button {
+  font-family: "Aldrich", sans-serif;
+  color: white;
 }
 
 .review-form input[type="radio"] + label {
@@ -414,6 +461,8 @@ button:hover {
   font-size: 16px;
   cursor: pointer;
   transition: 0.2s all;
+  border-radius: 10px;
+  border: 1px solid #72b01d;
 }
 
 .review-form input[type="radio"]:checked + label {
@@ -426,14 +475,32 @@ button:hover {
 }
 
 .form-btn {
-  background-color: #454955;
+  background-color: #72b01d;
   padding: 4px 11px;
   margin-left: 2vmin;
   color: white;
+  border-radius: 10px;
+  border: 1px solid #72b01d;
+}
+
+.delete {
+  align-self: flex-end;
+  margin-bottom: 2vmin;
 }
 
 .form-btn:hover {
   background-color: #3f7d20;
+}
+
+.review-container {
+  padding: 2vmin 0vmin;
+  display: flex;
+  align-items: center;
+  gap: 1vmin;
+}
+.review-container p {
+  padding: 0vmin;
+  margin: 0vmin;
 }
 
 .reviewed-container {
@@ -444,6 +511,11 @@ button:hover {
   justify-items: center;
   align-items: center;
   gap: 2vmin;
+}
+
+.reviewed-game-title {
+  padding: 2vmin;
+  font-size: 3vmin;
 }
 
 /* Custom styles for carousel navigation buttons */

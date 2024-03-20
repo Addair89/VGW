@@ -24,14 +24,18 @@ const add = async (req, res) => {
 const removeOne = async (req, res) => {
   await WishListGame.deleteOne({ id: req.params.id });
   await User.updateOne({ _id: req.user._id }, { $inc: { wishListCount: -1 } });
-  res.redirect("/games/show");
+  let user = await User.find({ _id: req.user._id });
+  if (user.wishListCount > 0) res.redirect("/wishlist/show");
+  res.redirect("/user-views/index");
 };
 
 const show = async (req, res) => {
-  let wishlist = await WishListGame.find({ user: req.user.id });
+  let wishlist = await WishListGame.find({ user: req.user._id });
+  const reviewedGames = await Review.find({ user: req.user._id });
   console.log(wishlist, "------------------------");
   res.render("user-views/wishlist", {
     wishlist,
+    reviewedGames,
   });
 };
 

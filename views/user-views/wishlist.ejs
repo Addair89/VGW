@@ -68,7 +68,7 @@
                         <p><%= game.metacritic %></p>
                     </div>
                 </div>
-                <p><%= game.name %></p>
+                <p class="wishlist-title"><%= game.name %></p>
             </div>
             <div class="wishlist-details">
                 <%= game.details.length %>
@@ -77,29 +77,40 @@
                     <a class="" href="<%= game.website %>">... See rest of description on <%=game.name%>'s website.</a>
                     <%}%>
             </div>
+            <% let rating = '' %>
+            <% reviewedGames.forEach(function(r) {%>
+                <%if(Number(r.gameId) === Number(game.id)){ %>
+                    <%rating = r.rating %>
+                <%}%>
+            <%})%>
             <div class="review-container">
-                <p>Review Game: </p>
-                <form class="review-form" action="/review/new/<%= game.id%>" method="POST">
-                    <input id="meh_<%= game.id %>" type="radio" name="rating" value="Meh" required>
+                <% if (rating.length > 0) { %>
+                <p>Your Review: </p>
+                <form class="review-form" action="/review/<%= game.id%>?_method=PUT"  method="POST">
+                <%} else{%>    
+                <p>Leave A Review: </p>    
+                <form class="review-form" action="/review/new/<%= game.id%>"  method="POST">
+                 <%}%>   
+                    <input id="meh_<%= game.id %>" type="radio" name="rating" value="Meh" <%= rating === 'Meh' ? 'checked' : '' %> required>
                     <label for="meh_<%= game.id %>">Meh</label>
                     
-                    <input id="good_<%= game.id %>" type="radio" name="rating" value="Good">
+                    <input id="good_<%= game.id %>" type="radio" name="rating" value="Good" <%= rating === 'Good' ? 'checked' : '' %> >
                     <label for="good_<%= game.id %>">Good</label>
                     
-                    <input id="great_<%= game.id %>" type="radio" name="rating" value="Great">
+                    <input id="great_<%= game.id %>" type="radio" name="rating" value="Great" <%= rating === 'Great' ? 'checked' : '' %> >
                     <label for="great_<%= game.id %>">Great</label>
                     
-                    <input id="amazing_<%= game.id %>" type="radio" name="rating" value="Amazing">
+                    <input id="amazing_<%= game.id %>" type="radio" name="rating" value="Amazing" <%= rating === 'Amazing' ? 'checked' : '' %> >
                     <label for="amazing_<%= game.id %>">Amazing</label>
-                    <button>Submit Review</button>
+                    <input type="text" name="wishlistPage" value="wishlistPage" hidden>
+                    <button class="form-btn"><%= rating.length > 0 ? 'Update Review' : 'Submit Review' %></button>
                 </form>
             </div>
-            <div class="remove-from-wish-list">
-                <p>Remove From Wish List: </p>
-                <form action="/wishlist/delete/<%= game.id%>?_method=DELETE" method="POST">
+                <form class="remove-from-wish-list" action="/wishlist/delete/<%= game.id%>?_method=DELETE" method="POST">
+                    <label for="">Remove From Wishlist</label>
                     <button><i class="fa-solid fa-heart"></i></button>
                 </form>
-            </div>
+            
         </div>
     </div>
     <% }) %>

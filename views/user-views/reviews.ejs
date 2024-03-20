@@ -3,6 +3,9 @@
 <div class="reviewed-container">
 <% games.forEach(function(el) {%>
     <div class="reviewed-game">
+        <form class="delete" action="/review/delete/<%= el.id%>?_method=DELETE" method="POST">
+            <button class="form-btn">Delete Review</button>
+        </form>
         <div class="review-game-img">
             <img src="<%= el.background_image %>" alt="">
         </div>
@@ -15,8 +18,8 @@
                 <%rating = r.rating %>
             <%}%>
         <%})%>
+        <p>Your Review: <%= rating %></p>
         <div class="review-container">
-            <p>You Said the Game Was: </p>
             <form class="review-form" action="/review/<%= el.id%>?_method=PUT" method="POST">
                 
                 <input id="meh_<%= el.id %>" type="radio" name="rating" value="Meh" <%= rating === 'Meh' ? 'checked' : '' %>  required>
@@ -32,9 +35,11 @@
                 <label for="amazing_<%= el.id %>">Amazing</label>
                 <input type="text" name="user" value="<%= user.id %>" hidden>
                 <input type="text" name="gameId" value="<%= el.id %>" hidden>
+                <input type="text" name="reviewPage" value="reviewPage" hidden>
                 <button class="form-btn">Update Review</button>
             </form>
         </div>
+        
     </div>
     <%})%>  
   </div>

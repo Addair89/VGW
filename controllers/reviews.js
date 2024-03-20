@@ -4,16 +4,16 @@ const WishListGame = require("../models/wishListGame");
 
 const add = async (req, res) => {
   console.log(req.body);
-  await User.updateOne({ _id: req.user._id }, { $inc: { reviewCount: 1 } });
   req.body.gameId = req.params.id;
   req.body.user = req.user.id;
   const review = await Review.create(req.body);
+  await User.updateOne({ _id: req.user._id }, { $inc: { reviewCount: 1 } });
   let wishListGame = await WishListGame.findOne({ id: req.body.gameId });
   if (wishListGame) {
     wishListGame.reviews.push(review._id);
     await wishListGame.save();
   }
-  res.render("user-views/index");
+  res.redirect("/users");
 };
 
 const show = async (req, res) => {
@@ -44,16 +44,31 @@ const edit = async (req, res) => {
   const filter = { gameId: req.params.id };
   const update = {
     rating: req.body.rating,
-    user: req.user.id,
+    user: req.user._id,
     gameId: req.params.id,
   };
   await Review.findOneAndUpdate(filter, update);
   console.log(req.body);
-  res.redirect("/review/show");
+  if (req.body.reviewPage) res.redirect("/review/show");
+  if (req.body.wishlistPage) res.redirect("/wishlist/show");
+};
+
+const removeOne = async (req, res) => {
+  let review = await Review.find({ gameId: req.params.id });
+  let wishListGame = await WishListGame.findOne({ id: req.params.id });
+  if (wishListGame) {
+    let index = wishListGame.reviews.indexOf(review._id);
+    wishListGame.reviews.splice(index, 1);
+    await wishListGame.save();
+  }
+  await Review.deleteOne({ gameId: req.params.id });
+  await User.updateOne({ _id: req.user._id }, { $inc: { reviewCount: -1 } });
+  res.redirect("/users");
 };
 
 module.exports = {
   add,
   show,
   edit,
+  delete: removeOne,
 };

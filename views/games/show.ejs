@@ -1,34 +1,62 @@
 <%- include('../partials/header') %>
 
 <div class="games-search-form">
-    <form action="">
-        <input type="text" placeholder="Search 850,000+ games...">
+    <form action="/games/search">
+        <input type="text" name="search" placeholder="Search 850,000+ games...">
         <button><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
 <main class="show-games">
     <aside class="search-parameters index-fixed">
-        <h3>All Games</h3>
-        <h3>New Releases</h3>
-        <h3>Top Rated</h3>
-        <p>This Month</p>
-        <p>This Year</p>
-        <p>All Time</p>
-        <h3>Genre</h3>
-        <p>Action</p>
-        <p>Strategy</p>
-        <p>RPG</p>
-        <p>Shooter</p>
-        <p>Adventure</p>
-        <p>Puzzle</p>
-        <p>Racing</p>
-        <p>Sports</p>
-        <h3>Platforms</h3>
-        <p>PC</p>
-        <p>PlayStation</p>
-        <p>XBOX</p>
-        <p>Nintendo</p>
-        <p>Mac</p>
+        <form class="heading-search-term" action="">
+          <input type="text" hidden name="allGames" value="games">
+          <button class="search-heading">All Games</button>
+        </form>
+        <form class="heading-search-term" action="">
+          <input type="text" hidden name="newReleases" value="newReleases">
+          <button class="search-heading">New Releases</button>
+        </form>
+        <h3 class="search-heading">Top Rated</h3>
+        <form action="">
+          <input type="text" hidden name="thisMonth" value="thisMonth">
+          <button class="search-term">- This Month</button>
+          <input type="text" hidden name="thisYear" value="thisYear">
+          <button class="search-term">- This Year</button>
+          <input type="text" hidden name="allTime" value="allTime">
+          <button class="search-term">- All Time</button>
+        </form>
+        <h3 class="search-heading">Genre</h3>
+        <form action=""> 
+          <input type="text" hidden name="genre" value="action">
+          <button class="search-term">- Action</button>
+          <input type="text" hidden name="genre" value="strategy">
+          <button class="search-term">- Strategy</button>
+          <input type="text" hidden name="genre" value="RPG">
+          <button class="search-term">- RPG</button>
+          <input type="text" hidden name="genre" value="Shooter">
+          <button class="search-term">- Shooter</button>
+          <input type="text" hidden name="genre" value="Adventure">
+          <button class="search-term">- Adventure</button>
+          <input type="text" hidden name="genre" value="Puzzle">
+          <button class="search-term">- Puzzle</button>
+          <input type="text" hidden name="genre" value="Racing">
+          <button class="search-term">- Racing</button>
+          <input type="text" hidden name="genre" value="Sports">
+          <button class="search-term">- Sports</button>
+        </form>
+        <h3 class="search-heading">Platforms</h3>
+        <form action="">
+          <input type="text" hidden name="platform" value="PC">
+          <button class="search-term">- PC</button>
+          <input type="text" hidden name="platform" value="Playstation">
+          <button class="search-term">- PlayStation</button>
+          <input type="text" hidden name="platform" value="XBOX">
+          <button class="search-term">- XBOX</button>
+          <input type="text" hidden name="platform" value="Nintendo">
+          <button class="search-term">- Nintendo</button>
+          <input type="text" hidden name="platform" value="Mac">
+          <button class="search-term">- Mac</button>
+        </form>
     </aside>
     <section class="main-games-section index-scroll">
       <% games.results.forEach(function(game) { %>
@@ -41,10 +69,12 @@
       <div class="platform-rating">
         <!-- Not sure might need to loop over array of platforms and select images -->
         <div class="platforms-icons">
+          <%if(game.parent_platforms){%>
           <% game.parent_platforms.forEach(function(p) { %>
             <% var platform = p.platform.id %>
             <i class="<%= platform === 1 ? 'fa-brands fa-windows' : platform === 2 ? 'fa-brands fa-playstation' : platform === 3 ? 'fa-brands fa-xbox' : platform === 5 ? 'fa-brands fa-apple' : platform === 7 ? 'fab fa-nintendo-switch' : '' %>"></i>
           <% }) %>
+          <%}%>
         </div>
         <p class="rating"><%= game.metacritic %></p>
       </div>
@@ -53,7 +83,7 @@
         <p><%= game.name %></p>
       </div>
       <!-- wishlist and review and details buttons-->
-      <div class="wish-review-details">
+      <div class="wish-review-details"> 
         <div class="wish-btn">
           <form action="/wishlist/<%- wishListIds.includes(game.id) ? 'delete' : 'add' %>/<%- game.id %><%- wishListIds.includes(game.id) ? '?_method=DELETE' : '' %>" method="POST">
             <input type="text" name="name" hidden  value="<%= game.name %>">

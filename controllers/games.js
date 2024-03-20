@@ -19,6 +19,25 @@ const showAll = async (req, res) => {
   });
 };
 
+const showSearch = async (req, res) => {
+  console.log(req.query.search);
+  const searchTerm = req.query.search;
+  const API_KEY = process.env.APIKEY;
+  let response = await fetch(`${ROOT_URL}?key=${API_KEY}&search=${searchTerm}`);
+  let games = await response.json();
+  console.log(games);
+  let wishListGames = await WishListGame.find({});
+  let wishListIds = wishListGames.map((el) => {
+    return el.id;
+  });
+
+  res.render("games/show", {
+    games,
+    wishListIds,
+  });
+};
+
 module.exports = {
   showAll,
+  showSearch,
 };
