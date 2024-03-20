@@ -11,7 +11,7 @@ const wishListGameSchema = new Schema({
   genres: { type: Array }, //this needs to be an array
   metacritic: { type: Number },
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  reviews: { type: Schema.Types.ObjectId, ref: "Review" },
+  reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
 });
 
 module.exports = mongoose.model("WishListGame", wishListGameSchema);

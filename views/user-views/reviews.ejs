@@ -1,2 +1,40 @@
 <%- include('../partials/header') %>
-   
+<h1><%= user.name %>'s Reviewed Games</h1>
+<div class="reviewed-container">
+<% games.forEach(function(el) {%>
+    <div class="reviewed-game">
+        <div class="review-game-img">
+            <img src="<%= el.background_image %>" alt="">
+        </div>
+        <div class="reviewed-game-title">
+            <p><%= el.name %></p>
+        </div>
+        <% let rating = '' %>
+        <% reviewedGames.forEach(function(r) {%>
+            <%if(Number(r.gameId) === Number(el.id)){ %>
+                <%rating = r.rating %>
+            <%}%>
+        <%})%>
+        <div class="review-container">
+            <p>You Said the Game Was: </p>
+            <form class="review-form" action="/review/<%= el.id%>?_method=PUT" method="POST">
+                
+                <input id="meh_<%= el.id %>" type="radio" name="rating" value="Meh" <%= rating === 'Meh' ? 'checked' : '' %>  required>
+                <label for="meh_<%= el.id %>">Meh</label>
+                
+                <input id="good_<%= el.id %>" type="radio" name="rating" value="Good" <%= rating === 'Good' ? 'checked' : '' %> >
+                <label for="good_<%= el.id %>">Good</label>
+                
+                <input id="great_<%= el.id %>" type="radio" name="rating" value="Great" <%= rating === 'Great' ? 'checked' : '' %> >
+                <label for="great_<%= el.id %>">Great</label>
+                
+                <input id="amazing_<%= el.id %>" type="radio" name="rating" value="Amazing" <%= rating === 'Amazing' ? 'checked' : '' %> >
+                <label for="amazing_<%= el.id %>">Amazing</label>
+                <input type="text" name="user" value="<%= user.id %>" hidden>
+                <input type="text" name="gameId" value="<%= el.id %>" hidden>
+                <button class="form-btn">Update Review</button>
+            </form>
+        </div>
+    </div>
+    <%})%>  
+  </div>

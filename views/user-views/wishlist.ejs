@@ -80,17 +80,17 @@
             <div class="review-container">
                 <p>Review Game: </p>
                 <form class="review-form" action="/review/new/<%= game.id%>" method="POST">
-                    <input id="meh" type="radio" name="rating" value="Meh">
-                    <label for="meh">Meh</label>
+                    <input id="meh_<%= game.id %>" type="radio" name="rating" value="Meh" required>
+                    <label for="meh_<%= game.id %>">Meh</label>
                     
-                    <input id="good" type="radio" name="rating" value="Good">
-                    <label for="good">Good</label>
+                    <input id="good_<%= game.id %>" type="radio" name="rating" value="Good">
+                    <label for="good_<%= game.id %>">Good</label>
                     
-                    <input id="great" type="radio" name="rating" value="Great">
-                    <label for="great">Great</label>
+                    <input id="great_<%= game.id %>" type="radio" name="rating" value="Great">
+                    <label for="great_<%= game.id %>">Great</label>
                     
-                    <input id="amazing" type="radio" name="rating" value="Amazing">
-                    <label for="amazing">Amazing</label>
+                    <input id="amazing_<%= game.id %>" type="radio" name="rating" value="Amazing">
+                    <label for="amazing_<%= game.id %>">Amazing</label>
                     <button>Submit Review</button>
                 </form>
             </div>

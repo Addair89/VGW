@@ -29,6 +29,7 @@ const removeOne = async (req, res) => {
 
 const show = async (req, res) => {
   let wishlist = await WishListGame.find({ user: req.user.id });
+  console.log(wishlist, "------------------------");
   res.render("user-views/wishlist", {
     wishlist,
   });

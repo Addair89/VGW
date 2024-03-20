@@ -7,7 +7,12 @@ const add = async (req, res) => {
   await User.updateOne({ _id: req.user._id }, { $inc: { reviewCount: 1 } });
   req.body.gameId = req.params.id;
   req.body.user = req.user.id;
-  await Review.create(req.body);
+  const review = await Review.create(req.body);
+  let wishListGame = await WishListGame.findOne({ id: req.body.gameId });
+  if (wishListGame) {
+    wishListGame.reviews.push(review._id);
+    await wishListGame.save();
+  }
   res.render("user-views/index");
 };
 
@@ -23,16 +28,32 @@ const show = async (req, res) => {
       return game;
     });
     const games = await Promise.all(gamesPromises);
-    console.log(games);
+    reviewedGames.forEach((el) => {
+      console.log(el.gameId);
+    });
     res.render("user-views/reviews", {
       games,
+      reviewedGames,
     });
   } catch (error) {
     console.error("Error:", error);
   }
 };
 
+const edit = async (req, res) => {
+  const filter = { gameId: req.params.id };
+  const update = {
+    rating: req.body.rating,
+    user: req.user.id,
+    gameId: req.params.id,
+  };
+  await Review.findOneAndUpdate(filter, update);
+  console.log(req.body);
+  res.redirect("/review/show");
+};
+
 module.exports = {
   add,
   show,
+  edit,
 };
