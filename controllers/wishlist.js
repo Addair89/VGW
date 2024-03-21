@@ -26,7 +26,7 @@ const removeOne = async (req, res) => {
   await User.updateOne({ _id: req.user._id }, { $inc: { wishListCount: -1 } });
   let user = await User.find({ _id: req.user._id });
   if (user.wishListCount > 0) res.redirect("/wishlist/show");
-  res.redirect("/user-views/index");
+  res.redirect("/users");
 };
 
 const show = async (req, res) => {

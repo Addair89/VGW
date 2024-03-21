@@ -488,6 +488,10 @@ button:hover {
   margin-bottom: 2vmin;
 }
 
+.delete:hover .form-btn {
+  background-color: red;
+}
+
 .form-btn:hover {
   background-color: #3f7d20;
 }
