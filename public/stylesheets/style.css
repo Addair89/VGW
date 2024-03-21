@@ -265,7 +265,7 @@ button {
 }
 
 .games-search-form {
-  margin: 0 auto 2vmin auto;
+  margin: -5vmin auto 2vmin auto;
   text-align: center;
   width: 25%;
   height: 50px;
@@ -520,6 +520,27 @@ button:hover {
 .reviewed-game-title {
   padding: 2vmin;
   font-size: 3vmin;
+}
+
+.next-prev-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22vmin;
+}
+
+.next-prev-btns > form button {
+  color: #f3eff5;
+  font-size: 3vmin;
+  background-color: #3f7d20;
+  border: 1px solid #72b01d;
+  border-radius: 10px;
+  padding: 1vmin;
+  margin: 2vmin;
+}
+.next-prev-btns > form button:hover {
+  background-color: #72b01d;
+  border: 1px solid #3f7d20;
 }
 
 /* Custom styles for carousel navigation buttons */

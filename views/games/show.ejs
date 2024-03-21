@@ -105,4 +105,20 @@
     </div>
     <% })%>
     </section>
+    
 </main>
+<% let nextUrl = games.next %>
+<% let nextUrlEnding = nextUrl.substring(nextUrl.indexOf('page='))%>
+
+<div class="next-prev-btns">
+  <% if(games.previous) {%>
+  <form action="/games/prev/<%=games.previous.slice(-6)%>">
+    <button>←Prev Page</button>
+  </form>
+  <%}%>
+  <% if(games.next) {%>
+  <form action="/games/next/<%=nextUrlEnding%>">
+    <button>Next Page →</button>
+  </form>
+  <%}%>
+</div>
