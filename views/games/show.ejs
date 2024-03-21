@@ -92,19 +92,57 @@
             <input type="text" name="platforms" hidden value="<%= JSON.stringify(game.parent_platforms) %>">
             <input type="text" name="screenShots" hidden value="<%= JSON.stringify(game.short_screenshots)%>">
             <input type="text" name="genres" hidden value="<%= JSON.stringify(game.genres) %>">
-            <button><i class="fa-<%- wishListIds.includes(game.id) ? 'solid' : 'regular' %> fa-heart"></i></button>
+            <button><i class="fa-<%- wishListIds.includes(game.id) ? 'solid' : 'regular' %> fa-heart"></i><span class="button-text"><%= wishListIds.includes(game.id) ? 'Remove from wish list' : 'Add to wish list' %></span></button>
           </form>
         </div>
-        <div class="review-btn">
-          <a href=""><i class="fa-regular fa-comment"></i></a>
-        </div>
         <div class="details-btn">
-          <a href=""><i class="fa-solid fa-ellipsis"></i></a>
+          <form action="/games/details/<%= game.id %>" method="GET">
+            <input type="text" name="name" hidden  value="<%= game.name %>">
+            <input type="text" name="id" hidden value="<%= game.id %>">
+            <input type="text" name="metacritic" hidden value="<%= game.metacritic %>">
+            <input type="text" name="screenShots1" hidden value="<%= JSON.stringify(game.short_screenshots)%>">
+            <input type="text" name="genres" hidden value="<%= JSON.stringify(game.genres) %>">
+            <button><i class="fa-solid fa-ellipsis"></i></button>
+          </form>
         </div>
+        
       </div>
+      <% let rating = '' %>
+            <% reviewedGames.forEach(function(r) {%>
+                <%if(Number(r.gameId) === Number(game.id)){ %>
+                    <%rating = r.rating %>
+                <%}%>
+            <%})%>
+          <div class="review form ">
+            <div class="review-container">
+              <% if (rating.length > 0) { %>
+                <form class="review-form show-page-review-form" action="/review/<%= game.id%>?_method=PUT"  method="POST">
+                <%} else{%>  
+                <form class="review-form show-page-review-form" action="/review/new/<%= game.id%>"  method="POST">
+                 <%}%>   
+                <input id="meh_<%= game.id %>" type="radio" name="rating" value="Meh" <%= rating === 'Meh' ? 'checked' : '' %> required>
+                <label for="meh_<%= game.id %>">Meh</label>
+                
+                <input id="good_<%= game.id %>" type="radio" name="rating" value="Good" <%= rating === 'Good' ? 'checked' : '' %> >
+                <label for="good_<%= game.id %>">Good</label>
+                
+                <input id="great_<%= game.id %>" type="radio" name="rating" value="Great" <%= rating === 'Great' ? 'checked' : '' %> >
+                <label for="great_<%= game.id %>">Great</label>
+                
+                <input id="amazing_<%= game.id %>" type="radio" name="rating" value="Amazing" <%= rating === 'Amazing' ? 'checked' : '' %> >
+                <label for="amazing_<%= game.id %>">Amazing</label>
+                <input type="text" name="wishlistPage" value="wishlistPage" hidden>
+                <button class="form-btn"><%= rating.length > 0 ? 'Update Review' : 'Submit Review' %></button>
+            </form>
+        </div>
+        </div>
     </div>
+    
     <% })%>
     </section>
+
+
+    
     
 </main>
 <% let nextUrl = games.next %>

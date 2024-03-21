@@ -4,6 +4,7 @@ const WishListGame = require("../models/wishListGame");
 const ROOT_URL = "https://api.rawg.io/api/games";
 
 const add = async (req, res) => {
+  await User.updateOne({ _id: req.user._id }, { $inc: { wishListCount: 1 } });
   const API_KEY = process.env.APIKEY;
   const data = await fetch(`${ROOT_URL}/${req.params.id}?key=${API_KEY}`);
   const game = await data.json();
@@ -17,7 +18,6 @@ const add = async (req, res) => {
   req.body.user = req.user._id;
   req.body.details = game.description_raw;
   await WishListGame.create(req.body);
-  await User.updateOne({ _id: req.user._id }, { $inc: { wishListCount: 1 } });
   res.redirect("/games/show");
 };
 

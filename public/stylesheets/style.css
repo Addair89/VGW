@@ -28,6 +28,12 @@ nav {
   justify-content: flex-end;
 }
 
+.login {
+  display: flex;
+  align-items: center;
+  gap: 2vmin;
+}
+
 .index-main {
   padding-top: 7vmin;
   display: grid;
@@ -340,7 +346,7 @@ button:hover {
 
 .wish-list-card {
   display: grid;
-  grid-template-columns: 40% auto;
+  grid-template-columns: 1fr;
   gap: 2vmin;
   align-items: flex-start;
   padding: 2vmin;
@@ -388,8 +394,14 @@ button:hover {
   justify-content: space-between;
 }
 
+.carousel-inner {
+  box-shadow: 0px 0px 20px 8px #72b01d4f;
+  border-radius: 25px;
+  border: 1px solid white;
+}
+
 .wish-list-container {
-  width: 80vw;
+  width: 55vw;
   margin: auto;
   padding: 2vmin 0vmin;
 }
@@ -538,6 +550,26 @@ button:hover {
 .next-prev-btns > form button:hover {
   background-color: #72b01d;
   border: 1px solid #3f7d20;
+}
+
+.show-page-review-form {
+  display: none;
+}
+
+.game-container:hover .show-page-review-form {
+  display: flex;
+}
+
+.show-page-review-form input[type="radio"] + label {
+  font-size: 1.5vmin;
+  padding: 1vmin;
+  background-color: #4549554d;
+}
+
+.button-text {
+  font-size: 2.5vmin;
+  padding: 1vmin;
+  color: #3f7d20;
 }
 
 /* Custom styles for carousel navigation buttons */

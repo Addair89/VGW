@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,14 +26,14 @@
     <a href="/" class="login">Browse Games</a>
   <% } %>
 </nav>
-<h1><%= user.name %>'s Wish List</h1>
+<%= game.id%>
 <main class="wish-list-container">
-    <% wishlist.forEach(function(game) {%>
     <div class="wish-list-card">
         <div class="image-rating">
             <div id="carousel<%= game.id %>" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                <% game.screenShots.forEach(function(image, index) { %>
+                <% const screenshots = JSON.parse(screenShots); %>
+                <% screenshots.forEach(function(image, index) { %>
                     <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
                         <img src="<%= image.image %>" class="d-block w-100" alt="Screenshot">
                     </div>
@@ -53,7 +54,7 @@
             <div class="wishlist-title-details">
                 <div class="platform-genres-rating">
                     <div class="platforms-icons">
-                        <% game.platforms.forEach(function(p) { %>
+                        <% game.parent_platforms.forEach(function(p) { %>
                             <% var platform = p.platform.id %>
                             <i class="<%= platform === 1 ? 'fa-brands fa-windows' : platform === 2 ? 'fa-brands fa-playstation' : platform === 3 ? 'fa-brands fa-xbox' : platform === 5 ? 'fa-brands fa-apple' : platform === 7 ? 'fab fa-nintendo-switch' : '' %>"></i>
                         <% }) %>
@@ -71,8 +72,8 @@
                 <p class="wishlist-title"><%= game.name %></p>
             </div>
             <div class="wishlist-details">
-                <%- `${game.details.slice(0, 500)}`%>
-                <%if(game.details.length > 500) {%>
+                <%- `${game.description.slice(0, 500)}`%>
+                <%if(game.description.length > 500) {%>
                     <a class="" href="<%= game.website %>">... See rest of description on <%=game.name%>'s website.</a>
                     <%}%>
             </div>
@@ -105,14 +106,20 @@
                     <button class="form-btn"><%= rating.length > 0 ? 'Update Review' : 'Submit Review' %></button>
                 </form>
             </div>
-                <form class="remove-from-wish-list" action="/wishlist/delete/<%= game.id%>?_method=DELETE" method="POST">
-                    <label for="">Remove From Wishlist</label>
-                    <button><i class="fa-solid fa-heart"></i></button>
-                </form>
+                <div class="wish-btn">
+                    <form action="/wishlist/<%- wishlist.length > 0 ? 'delete' : 'add' %>/<%- game.id %><%- wishlist.length > 0 ? '?_method=DELETE' : '' %>" method="POST">
+                        <input type="text" name="name" hidden  value="<%= game.name %>">
+                        <input type="text" name="id" hidden value="<%= game.id %>">
+                        <input type="text" name="metacritic" hidden value="<%= game.metacritic %>">
+                        <input type="text" name="platforms" hidden value="<%= JSON.stringify(game.parent_platforms) %>">
+                        <input type="text" name="screenShots" hidden value="<%= JSON.stringify(screenshots)%>">
+                        <input type="text" name="genres" hidden value="<%= JSON.stringify(game.genres) %>">
+                        <button><i class="fa-<%- wishlist.length > 0 ? 'solid' : 'regular' %> fa-heart"></i><span class="button-text"><%= wishlist.length > 0 ? 'Remove from wish list' : 'Add to wish list' %></span></button>
+                    </form>
+                </div>
             
         </div>
     </div>
-    <% }) %>
 </main>
 </body>
 </html>
