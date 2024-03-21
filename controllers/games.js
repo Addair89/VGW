@@ -69,6 +69,7 @@ const prev = async (req, res) => {
   }
   let games = await response.json();
   let wishListGames = await WishListGame.find({});
+  const reviewedGames = await Review.find({ user: req.user._id });
   let wishListIds = wishListGames.map((el) => {
     return el.id;
   });
@@ -76,6 +77,7 @@ const prev = async (req, res) => {
   res.render("games/show", {
     games,
     wishListIds,
+    reviewedGames,
   });
 };
 
